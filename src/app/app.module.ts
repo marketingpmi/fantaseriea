@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { FooterComponent } from "./footer/footer.component";
     AppComponent,
     routingComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    TableComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
