@@ -1,0 +1,8 @@
+.ctn_footer {
+    position: absolute;
+    bottom: 0;
+    min-heigth: 40px;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}

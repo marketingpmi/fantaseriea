@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+
+body {
+    font-family: 'Quicksand';
+    font-size: 14px;
+}
+
+.mobileDisplay {
+    display: none;
+}
+
+.navbar {
+    display: inline-block;
+}
+
+.right {
+    float: right;
+}
+
+.noborder {
+    border: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+/** COLOR **/
+.green {
+    background-color: green;
+}
+.green:hover {
+    background-color: green;
+}
+
+/***** MEDIA QUERY **********/
+
+@media (min-width : 200px) and (max-width : 767px) {
+    body {
+        font-family: 'Quicksand';
+        font-size: 12px;
+    }
+
+    .mobileDisplay {
+        display: inline-block;
+    }
+}
