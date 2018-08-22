@@ -6,47 +6,29 @@ import 'rxjs-compat/add/operator/take';
 import 'rxjs-compat/add/operator/map';
 import 'rxjs-compat/add/operator/do';
 import {AngularFireAuth} from 'angularfire2/auth';
+import 'rxjs-compat/add/observable/from';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-    isLogged: boolean;
-    router: Router;
 
-    constructor(public afAuth: AngularFireAuth, router: Router, private authService: AuthService) {
-        this.isLogged = false;
-    }
+    constructor(private afAuth: AngularFireAuth, private router: Router) {}
 
-    OnInit() {
-        this.afAuth.authState.subscribe(user => {
-            if (user != null) {
-                this.isLogged = true;
-            } else {
-                this.isLogged = false;
-            }
-            alert ('header isLogged -> ' + JSON.stringify(this.isLogged));
-        });
-    }
 
-    /*canActivate(
+    canActivate(
         next: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): Observable<boolean> | boolean {
-        alert(this.authService.authenticated);
-        if (this.authService.authenticated) { return true; }
+        state: RouterStateSnapshot): Observable<boolean> {
 
-        this.router.navigate(['login']);
-        return false;
-    }*/
-
-    canActivate(): Observable<boolean> {
-        alert ('canActivate isLogged -> ' + this.isLogged);
-        if (this.isLogged === true) {
-            return of(true);
-        } else {
-            return of(false);
-            this.router.navigate(['/login']);
-        }
+        return this.afAuth.authState
+            .take(1)
+            .map(user => !!user)
+            .do(loggedIn => {
+                if (!loggedIn) {
+                    console.log ("access denied")
+                    this.router.navigate(['/login']);
+                }
+            });
     }
 
 }

@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 import {User} from '../models/user';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
+import {AuthGuard} from '../services/auth-guard.service';
 
 @Component({
   selector: 'app-header',
@@ -11,28 +12,21 @@ import {AngularFireAuth} from 'angularfire2/auth';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public isLogged: Observable<boolean>;
-    router: Router;
+  public isLogged: boolean;
 
-      constructor(public afAuth: AngularFireAuth, router: Router, private authService: AuthService) {
+      constructor(public afAuth: AngularFireAuth, private router: Router, private authService: AuthService, private guard: AuthGuard) {
+          this.authService.getLogged().subscribe((auth) => {
+              console.log(' this.authService.getLogged -> ' + auth);
+              this.isLogged = auth;
+          });
       }
 
   ngOnInit() {
-      this.afAuth.authState.subscribe(user => {
-          if (user != null) {
-              this.isLogged = of(true);
-          } else {
-              this.isLogged = of(false);
-          }
-          alert ('header isLogged -> ' + JSON.stringify(this.isLogged));
-      });
   }
 
   logout() {
       this.authService.logout ().then(value => {
-          this.isLogged = of(false);
-          alert ("Logout effettuato con successo!");
-          this.router.navigate['/login'];
+          this.isLogged = false;
       });
   }
 

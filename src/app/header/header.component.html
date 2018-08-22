@@ -21,16 +21,15 @@
                         <a class="nav-link" href="/profile">Profilo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" (click)="logout()" style="cursor:pointer">Logout</a>
+                        <a class="nav-link" (click)="logout()" *ngIf="isLogged" style="cursor:pointer">Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login" style="cursor:pointer">Login</a>
+                        <a class="nav-link" href="/login" *ngIf="!isLogged" style="cursor:pointer">Login</a>
                     </li>
                 </ul>
             </div>
         </nav>
     </div>
-    isLogged => {{isLogged|async}}
 
     <div class="right">
         <div class="cnt_title">Fantaserie A</div>

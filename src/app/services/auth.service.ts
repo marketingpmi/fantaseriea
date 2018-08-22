@@ -5,52 +5,47 @@ import * as firebase from 'firebase/app';
 import { Router } from "@angular/router";
 
 import { Observable, of } from 'rxjs';
+import {AngularFireDatabase} from 'angularfire2/database';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-    user: Observable<firebase.User>;
-    private utente: firebase.User;
-    authState: any = null;
-    router: Router;
+     authenticated: any;
 
+    constructor(private afAuth: AngularFireAuth,
+                private db: AngularFireDatabase,
+                private router:Router) {
 
-
-    getLogged(): any {
-        return this.authState;
-    }
-
-
-
-    constructor(public afAuth: AngularFireAuth, router: Router) {
-        // this.authState = this.afAuth.authState;
-        this.afAuth.authState.subscribe(user => {
-            if (user) {
-                this.authState = user;
-            } else {
-                this.authState = null;
-            }
+        this.afAuth.authState.subscribe((auth) => {
+            this.authenticated = auth;
         });
     }
 
-    signup(email: string, password: string) {
-        this.afAuth
-            .auth
-            .createUserWithEmailAndPassword(email, password)
-            .then(value => {
-                alert ('Signin effettuato con successo!');
-            })
-            .catch(err => {
-                alert ('ERRORE DI SIGNIN => '+err.message);
+    // Returns true if user is logged in
+    getLogged(): any {
+        return this.afAuth.authState
+            .take(1)
+            .map(user => !!user)
+            .do(loggedIn => {
+                if (!loggedIn) {
+                    return false;
+                } else {
+                    return true;
+                }
             });
+    }
+
+    // Returns current user data
+    get currentUser(): any {
+        return this.authenticated ? this.authenticated : null;
     }
 
     login(email: string, password: string) {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
-                this.authState = user
+                this.authenticated = user;
                 alert('Login effettuato con successo!');
                 //this.updateUserData()
                 return;
@@ -63,6 +58,9 @@ export class AuthService {
     logout() {
         return this.afAuth.auth.signOut()
             .then((res) => {
+                this.authenticated = null;
+                alert ("Logout effettuato con successo!");
+                this.router.navigate(['/login']);
             });
     }
 
