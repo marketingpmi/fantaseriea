@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+///<reference path="../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  constructor() { }
+    @Input() model: string;
+    @Input() config: string;
+    @Input() data: string;
+
+
+  constructor() {
+      console.dir(this.data);
+  }
 
   ngOnInit() {
   }
+
+    keys(): Array<string> {
+      console.log (this.data);
+        return Object.values(this.data);
+    }
 
 }

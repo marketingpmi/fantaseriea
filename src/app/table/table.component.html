@@ -1,3 +1,27 @@
-<p>
-  table works!
-</p>
+<div class="customTable table-responsive">
+  <table class="table">
+    <thead>
+    <tr>
+      <th *ngFor="let el of model">
+        {{el.name}}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let element of data | async">
+      <td> {{ element.fase }}</td>
+      <td>{{element.stagione}}</td>
+      <td>{{element.data}}</td>
+      <td>{{element.squadra1}}</td>
+      <td>VS.</td>
+      <td>{{element.squadra2}}</td>
+      <td>{{element.q1}}</td>
+      <td>{{element.qx}}</td>
+      <td>{{element.q2}}</td>
+      <td>{{element.g1}}</td>
+      <td>VS.</td>
+      <td>{{element.g2}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

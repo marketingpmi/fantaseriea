@@ -23,6 +23,8 @@ import { WgClassificaComponent } from './wg-classifica/wg-classifica.component';
 import {LoginComponent} from "./login/login.component";
 import {DashboardComponent} from './dashboard/dashboard.component';
 
+import {AngularMaterialModule} from './angular-material/angular-material.module';
+
 
 @NgModule({
   imports: [
@@ -33,7 +35,8 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     BrowserAnimationsModule,
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireDatabaseModule,
-      AngularFireAuthModule
+      AngularFireAuthModule,
+      AngularMaterialModule
   ],
   declarations: [
     AppComponent,
