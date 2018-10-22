@@ -1,0 +1,94 @@
+<div class="container-title-buttons">
+  <h1 style="display: inline-block; margin: 10px">Utenti</h1>
+  <button style="display: inline-block; margin: 10px" class="btn btn-dark btn-sm centerElement" type="button" data-toggle="collapse" data-target="#collapseInsertUser" aria-expanded="false" aria-controls="collapseInsertUser">
+    Inserisci utente
+  </button>
+</div>
+
+<div class="container-table settanta">
+  <table class="table" *ngIf="users">
+    <thead>
+    <tr>
+      <th>Avatar</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Numero telefono</th>
+      <th>Ruolo</th>
+      <th *ngIf="(edit === false)">edit</th>
+      <th *ngIf="(edit === false)">delete</th>
+      <th *ngIf="(edit === true)">save</th>
+      <th *ngIf="(edit === true)">undo</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let element of users | async">
+      <!-- VIEW -->
+      <td *ngIf="view"><img class="avatar" [src]="element.photoUrl | convertPhotoUrl | async"></td>
+      <td *ngIf="view">{{element.name}}</td>
+      <td *ngIf="view">{{element.email}}</td>
+      <td *ngIf="view">{{element.phoneNumber}}</td>
+      <td *ngIf="view">{{element.role}}</td>
+      <!-- EDIT -->
+      <td *ngIf="edit">
+        <button class="btn btn-dark btn-sm centerElement" type="button" (click)="changeAvatar()">
+          Cambia avatar
+        </button>
+        <div class="input-group mb-3" hidden>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="photoUrlChange"  (change)="handleFileInput($event.target.files)">
+            <label class="custom-file-label" for="photoUrl">Carica immagine</label>
+          </div>
+        </div>
+      </td>
+      <td *ngIf="edit"><input type="text" [(ngModel)]="element.name" name="name"></td>
+      <td *ngIf="edit"><input type="text" [(ngModel)]="element.email" name="email"></td>
+      <td *ngIf="edit"><input type="text" [(ngModel)]="element.phoneNumber" name="phoneNumber"></td>
+      <td *ngIf="edit"><input type="text" [(ngModel)]="element.role" name="role"></td>
+      <!-- ACTIONS VIEW -->
+      <td *ngIf="(edit === false)" (click)="editItem(element)" style="width:10px"><button class="fas fa-pencil-alt"></button></td>
+      <td *ngIf="(edit === false)" style="width:10px" (click)="deleteItem(element)"><button class="fas fa-trash"></button></td>
+      <!-- ACTIONS EDIT -->
+      <td *ngIf="(edit === true)" (click)="saveItem(element)" style="width:10px"><button class="fas fa-save"></button></td>
+      <td *ngIf="(edit === true)" (click)="viewMode(element)" style="width:10px"><button class="fas fa-undo"></button></td>
+
+    </tr>
+    </tbody>
+
+  </table>
+
+  <div class="nodata" *ngIf="!users">
+    NO DATA
+  </div>
+
+</div>
+
+<hr />
+
+<p class="centerElement">
+
+</p>
+
+<div class="collapse" id="collapseInsertUser">
+  <div class="container-form mini" *ngIf="currentUser.role=='admin'">
+    <h4>Inserisci nuovo utente</h4>
+    <form #form="ngForm" (ngSubmit)="insertUser(form)">
+      <label class="standard">Nome</label> <input type="text" [(ngModel)]="name" name="name" required><br>
+      <label class="standard">Email</label> <input type="email" [(ngModel)]="email" name="email" required><br>
+      <label class="standard">Telefono</label> <input type="phone" [(ngModel)]="phoneNumber" name="phoneNumber"><br>
+      <label class="standard">Ruolo</label><select id="role" [(ngModel)]="role" name="role">
+        <option *ngFor="let ro of roles" [value]="ro.role">{{ro.role}}</option>
+    </select>
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="photoUrl" (change)="handleFileInput($event.target.files)">
+          <label class="custom-file-label" for="photoUrl">Carica immagine</label>
+        </div>
+      </div>
+
+      <div class="centerElement">
+        <button class="btn btn-success centerElement">Inserisci utente</button>
+      </div>
+    </form>
+  </div>
+</div>

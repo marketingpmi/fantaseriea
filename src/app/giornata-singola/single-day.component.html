@@ -1,0 +1,72 @@
+<table class="table" *ngIf="data">
+  <thead *ngIf="edit">
+  <tr>
+    <th *ngFor="let el of model">
+      {{el.name}}
+    </th>
+    <th *ngIf="config.view === 'true'"></th>
+    <th *ngIf="config.edit === 'true'">save</th>
+    <th *ngIf="config.delete === 'true'">undo</th>
+  </tr>
+  </thead>
+
+  <thead *ngIf="view">
+  <tr>
+    <th *ngFor="let el of model">
+      {{el.name}}
+    </th>
+    <th *ngIf="config.view === 'true'"></th>
+    <th *ngIf="config.edit === 'true'">save</th>
+    <th *ngIf="config.delete === 'true'">undo</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let element of data | async">
+    <!-- VIEW -->
+    <td *ngIf="element.view">{{element.stagione}} </td>
+    <td *ngIf="element.view">{{element.data | date:'dd/MM/yyyy'}}</td>
+    <td *ngIf="element.view">{{element.squadra1}}</td>
+    <td *ngIf="element.view">VS.</td>
+    <td *ngIf="element.view">{{element.squadra2}}</td>
+    <td *ngIf="element.view">{{element.q1}}</td>
+    <td *ngIf="element.view">{{element.qx}}</td>
+    <td *ngIf="element.view">{{element.q2}}</td>
+    <!-- EDIT -->
+    <td *ngIf="element.edit"><select id="stagione" [(ngModel)]="element.stagione" required name="stagione">
+    <option *ngFor="let stag of stagioni" [value]="stag.stagione">{{stag.stagione}}</option>
+  </select></td>
+    <td style="width: 100px" *ngIf="element.edit"><input type="date" [(ngModel)]="element.data" name="data" required></td>
+    <td *ngIf="element.edit" class="major">
+      <select id="squadra1" [(ngModel)]="element.squadra1"
+              required name="squadra1">
+        <option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>
+      </select>
+    </td>
+    <td *ngIf="element.edit">VS</td>
+    <td *ngIf="element.edit" class="major">
+      <select id="squadra2" [(ngModel)]="element.squadra2"
+              required name="squadra2">
+        <option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>
+      </select>
+    </td>
+    <td style="width: 100px" *ngIf="element.edit" class="redux"><input type="text" [(ngModel)]="element.q1" name="q1"> </td>
+    <td style="width: 100px" *ngIf="element.edit" class="redux"><input type="text" [(ngModel)]="element.qx" name="qx"></td>
+    <td style="width: 100px" *ngIf="element.edit" class="redux"><input type="text" [(ngModel)]="element.q2" name="q2"></td>
+    <!-- ACTIONS VIEW -->
+    <td *ngIf="(config.view === 'true') && (element.view === true) && (edit === false)" style="width:10px"><button class="fas fa-eye"></button></td>
+    <td *ngIf="(config.edit === 'true') && (element.view === true) && (edit === false)" (click)="editItem(element)" style="width:10px"><button class="fas fa-pencil-alt"></button></td>
+    <td *ngIf="(config.delete === 'true') && (element.view === true) && (edit === false)" style="width:10px" (click)="deleteItem(element)"><button class="fas fa-trash"></button></td>
+    <!-- ACTIONS EDIT -->
+    <td *ngIf="(config.view === 'true') && (element.edit === true)" style="width:10px"></td>
+    <td *ngIf="(config.edit === 'true') && (element.edit === true)" (click)="saveGiornata(element)" style="width:10px"><button class="fas fa-save"></button></td>
+    <td *ngIf="(config.delete === 'true') && (element.edit === true)" (click)="viewMode(element)" style="width:10px"><button class="fas fa-undo"></button></td>
+
+  </tr>
+  </tbody>
+
+</table>
+
+<div class="nodata" *ngIf="!data">
+  NO DATA
+</div>

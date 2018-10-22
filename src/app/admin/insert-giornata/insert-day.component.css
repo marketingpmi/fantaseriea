@@ -1,0 +1,32 @@
+.form {
+    width: 80%;
+}
+
+.form table.giornata tr td.redux input, .form table.giornata tr th.redux {
+    min-width: 100px;
+    width: 100px;
+}
+.form table.giornata tr td.major,.form table.giornata tr th.major {
+    min-width: 20%;
+    width: 20%;
+}
+
+table {
+    margin: 0 auto;
+}
+
+.form table.giornata tr td, .form table.giornata tr th {
+    width: 15%;
+    text-align: center;
+    padding: 10px;
+}
+table.giornata input {
+width: 100%;
+ }
+table.giornata select {
+    width: 100%;
+}
+
+table.giornata[_ngcontent-c3] td.redux input[_ngcontent-c3] {
+    width: 100px !important;
+}

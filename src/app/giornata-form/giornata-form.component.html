@@ -1,0 +1,21 @@
+<td *ngIf="element.edit"><select id="stagione" [(ngModel)]="stagione"
+                                 required name="stagione">
+  <option *ngFor="let stag of stagioni" [value]="stag.stagione">{{stag.stagione}}</option>
+</select></td>
+<td style="width: 100px" *ngIf="element.edit"><input type="date" [(ngModel)]="datag" name="data" required></td>
+<td *ngIf="element.edit" class="major">
+  <select id="squadra1" [(ngModel)]="squadra1"
+          required name="squadra1">
+    <option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>
+  </select>
+</td>
+<td *ngIf="element.edit">VS</td>
+<td *ngIf="element.edit" class="major">
+  <select id="squadra2" [(ngModel)]="squadra2"
+          required name="squadra2">
+    <option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>
+  </select>
+</td>
+<td style="width: 100px" *ngIf="element.edit" class="redux"><input type="text" [(ngModel)]="q1" name="q1"> </td>
+<td style="width: 100px" *ngIf="element.edit" class="redux"><input type="text" [(ngModel)]="qx" name="qx"></td>
+<td style="width: 100px" *ngIf="element.edit" class="redux"><input type="text" [(ngModel)]="q2" name="q2"></td>

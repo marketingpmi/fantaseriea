@@ -1,0 +1,325 @@
+
+<h1>INSERISCI GIORNATA</h1>
+
+
+<form class="form" #form="ngForm" (ngSubmit)="addDay(form)">
+
+  <!-- GIORNATA -->
+  <label>Giornata</label>
+  <input type="text" ngModel #giornata="ngModel" name="giornata">
+
+  <!-- STAGIONE -->
+  <label>Stagione</label>
+  <select id="stagione" ngModel #stagione="ngModel"
+          required name="stagione">
+    <option *ngFor="let stag of stagioni" [value]="stag.stagione">{{stag.stagione}}</option>
+  </select>
+
+  <table class="giornata">
+    <!-- PARTITA 1 -->
+    <tr>
+      <th>Data</th>
+      <th class="redux">Ora</th>
+      <th class="major">Squadra 1</th>
+      <th class="major">Squadra 2</th>
+      <th class="redux">Q. 1</th>
+      <th class="redux">Q. X</th>
+      <th class="redux">Q. 2</th>
+    </tr>
+    <tr>
+      <td><input type="date" ngModel #data="ngModel" name="data" required></td>
+      <td class="redux"><input type="time" ngModel #time="ngModel" name="time" required></td>
+      <td class="major">
+        <select id="squadra1" ngModel #squadra1="ngModel"
+                    required name="squadra1">
+          <option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>
+        </select>
+      </td>
+      <td class="major">
+        <select id="squadra2" ngModel #squadra2="ngModel"
+                required name="squadra2">
+          <option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>
+        </select>
+      </td>
+      <td class="redux"><input type="text" ngModel #q1_1="ngModel" name="q1"> </td>
+      <td class="redux"><input type="text" ngModel #qx_1="ngModel" name="qx"></td>
+      <td class="redux"><input type="text" ngModel #q2_1="ngModel" name="q2"></td>
+    </tr>
+    <!-- FINE PARTITA -->
+    <!--&lt;!&ndash; PARTITA 2 &ndash;&gt;-->
+    <!--<tr>-->
+      <!--<th>Data</th>-->
+      <!--<th class="redux">Ora</th>-->
+      <!--<th class="major">Squadra 1</th>-->
+      <!--<th class="major">Squadra 2</th>-->
+      <!--<th class="redux">Q. 1</th>-->
+      <!--<th class="redux">Q. X</th>-->
+      <!--<th class="redux">Q. 2</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<td><input type="date" ngModel #data_2="ngModel" name="data_2" required></td>-->
+      <!--<td class="redux"><input type="time" ngModel #time_2="ngModel" name="time_2" required></td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra1_2" ngModel #squadra1_2="ngModel"-->
+                <!--required name="squadra1_2">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra2_2" ngModel #squadra2_2="ngModel"-->
+                <!--required name="squadra2_2">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="redux"><input type="text" ngModel #q1_2="ngModel" name="q1_2"> </td>-->
+      <!--<td class="redux"><input type="text" ngModel #qx_2="ngModel" name="qx_2"></td>-->
+      <!--<td class="redux"><input type="text" ngModel #q2_2="ngModel" name="q2_2"></td>-->
+    <!--</tr>-->
+    <!--&lt;!&ndash; FINE PARTITA &ndash;&gt;-->
+    <!--&lt;!&ndash; PARTITA &ndash;&gt;-->
+    <!--<tr>-->
+      <!--<th>Data</th>-->
+      <!--<th class="redux">Ora</th>-->
+      <!--<th class="major">Squadra 1</th>-->
+      <!--<th class="major">Squadra 2</th>-->
+      <!--<th class="redux">Q. 1</th>-->
+      <!--<th class="redux">Q. X</th>-->
+      <!--<th class="redux">Q. 2</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<td><input type="date" ngModel #data_3="ngModel" name="data_3" required></td>-->
+      <!--<td class="redux"><input type="time" ngModel #time_3="ngModel" name="time_3" required></td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra1_3" ngModel #squadra1_3="ngModel"-->
+                <!--required name="squadra1_3">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra2_3" ngModel #squadra2_3="ngModel"-->
+                <!--required name="squadra2_3">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="redux"><input type="text" ngModel #q1_3="ngModel" name="q1_3"> </td>-->
+      <!--<td class="redux"><input type="text" ngModel #qx_3="ngModel" name="qx_3"></td>-->
+      <!--<td class="redux"><input type="text" ngModel #q2_3="ngModel" name="q2_3"></td>-->
+    <!--</tr>-->
+    <!--&lt;!&ndash; FINE PARTITA &ndash;&gt;-->
+    <!--&lt;!&ndash; PARTITA &ndash;&gt;-->
+    <!--<tr>-->
+      <!--<th>Data</th>-->
+      <!--<th class="redux">Ora</th>-->
+      <!--<th class="major">Squadra 1</th>-->
+      <!--<th class="major">Squadra 2</th>-->
+      <!--<th class="redux">Q. 1</th>-->
+      <!--<th class="redux">Q. X</th>-->
+      <!--<th class="redux">Q. 2</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<td><input type="date" ngModel #data_4="ngModel" name="data_4" required></td>-->
+      <!--<td class="redux"><input type="time" ngModel #time_4="ngModel" name="time_4" required></td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra1_4" ngModel #squadra1_4="ngModel"-->
+                <!--required name="squadra1_4">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra2_4" ngModel #squadra2_4="ngModel"-->
+                <!--required name="squadra2_4">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="redux"><input type="text" ngModel #q1_4="ngModel" name="q1_4"> </td>-->
+      <!--<td class="redux"><input type="text" ngModel #qx_4="ngModel" name="qx_4"></td>-->
+      <!--<td class="redux"><input type="text" ngModel #q2_4="ngModel" name="q2_4"></td>-->
+    <!--</tr>-->
+    <!--&lt;!&ndash; FINE PARTITA &ndash;&gt;-->
+    <!--&lt;!&ndash; PARTITA &ndash;&gt;-->
+    <!--<tr>-->
+      <!--<th>Data</th>-->
+      <!--<th class="redux">Ora</th>-->
+      <!--<th class="major">Squadra 1</th>-->
+      <!--<th class="major">Squadra 2</th>-->
+      <!--<th class="redux">Q. 1</th>-->
+      <!--<th class="redux">Q. X</th>-->
+      <!--<th class="redux">Q. 2</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<td><input type="date" ngModel #data_5="ngModel" name="data_5" required></td>-->
+      <!--<td class="redux"><input type="time" ngModel #time_5="ngModel" name="time_5" required></td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra1_5" ngModel #squadra1_5="ngModel"-->
+                <!--required name="squadra1_5">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra2_5" ngModel #squadra2_5="ngModel"-->
+                <!--required name="squadra2_5">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="redux"><input type="text" ngModel #q1_5="ngModel" name="q1_5"> </td>-->
+      <!--<td class="redux"><input type="text" ngModel #qx_5="ngModel" name="qx_5"></td>-->
+      <!--<td class="redux"><input type="text" ngModel #q2_5="ngModel" name="q2_5"></td>-->
+    <!--</tr>-->
+    <!--&lt;!&ndash; FINE PARTITA &ndash;&gt;-->
+    <!--&lt;!&ndash; PARTITA &ndash;&gt;-->
+    <!--<tr>-->
+      <!--<th>Data</th>-->
+      <!--<th class="redux">Ora</th>-->
+      <!--<th class="major">Squadra 1</th>-->
+      <!--<th class="major">Squadra 2</th>-->
+      <!--<th class="redux">Q. 1</th>-->
+      <!--<th class="redux">Q. X</th>-->
+      <!--<th class="redux">Q. 2</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<td><input type="date" ngModel #data_6="ngModel" name="data_6" required></td>-->
+      <!--<td class="redux"><input type="time" ngModel #time_6="ngModel" name="time_6" required></td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra1_6" ngModel #squadra1_6="ngModel"-->
+                <!--required name="squadra1_6">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra2_6" ngModel #squadra2_6="ngModel"-->
+                <!--required name="squadra2_6">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="redux"><input type="text" ngModel #q1_6="ngModel" name="q1_6"> </td>-->
+      <!--<td class="redux"><input type="text" ngModel #qx_6="ngModel" name="qx_6"></td>-->
+      <!--<td class="redux"><input type="text" ngModel #q2_6="ngModel" name="q2_6"></td>-->
+    <!--</tr>-->
+    <!--&lt;!&ndash; FINE PARTITA &ndash;&gt;-->
+    <!--&lt;!&ndash; PARTITA &ndash;&gt;-->
+    <!--<tr>-->
+      <!--<th>Data</th>-->
+      <!--<th class="redux">Ora</th>-->
+      <!--<th class="major">Squadra 1</th>-->
+      <!--<th class="major">Squadra 2</th>-->
+      <!--<th class="redux">Q. 1</th>-->
+      <!--<th class="redux">Q. X</th>-->
+      <!--<th class="redux">Q. 2</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<td><input type="date" ngModel #data_7="ngModel" name="data_7" required></td>-->
+      <!--<td class="redux"><input type="time" ngModel #time_7="ngModel" name="time_7" required></td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra1_7" ngModel #squadra1_7="ngModel"-->
+                <!--required name="squadra1_7">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra2_7" ngModel #squadra2_7="ngModel"-->
+                <!--required name="squadra2_7">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="redux"><input type="text" ngModel #q1_7="ngModel" name="q1_7"> </td>-->
+      <!--<td class="redux"><input type="text" ngModel #qx_7="ngModel" name="qx_7"></td>-->
+      <!--<td class="redux"><input type="text" ngModel #q2_7="ngModel" name="q2_7"></td>-->
+    <!--</tr>-->
+    <!--&lt;!&ndash; FINE PARTITA &ndash;&gt;-->
+    <!--&lt;!&ndash; PARTITA &ndash;&gt;-->
+    <!--<tr>-->
+      <!--<th>Data</th>-->
+      <!--<th class="redux">Ora</th>-->
+      <!--<th class="major">Squadra 1</th>-->
+      <!--<th class="major">Squadra 2</th>-->
+      <!--<th class="redux">Q. 1</th>-->
+      <!--<th class="redux">Q. X</th>-->
+      <!--<th class="redux">Q. 2</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<td><input type="date" ngModel #data_8="ngModel" name="data_8" required></td>-->
+      <!--<td class="redux"><input type="time" ngModel #time_8="ngModel" name="time_8" required></td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra1_8" ngModel #squadra1_8="ngModel"-->
+                <!--required name="squadra1_8">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra2_8" ngModel #squadra2_8="ngModel"-->
+                <!--required name="squadra2_8">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="redux"><input type="text" ngModel #q1_8="ngModel" name="q1_8"> </td>-->
+      <!--<td class="redux"><input type="text" ngModel #qx_8="ngModel" name="qx_8"></td>-->
+      <!--<td class="redux"><input type="text" ngModel #q2_8="ngModel" name="q2_8"></td>-->
+    <!--</tr>-->
+    <!--&lt;!&ndash; FINE PARTITA &ndash;&gt;-->
+    <!--&lt;!&ndash; PARTITA &ndash;&gt;-->
+    <!--<tr>-->
+      <!--<th>Data</th>-->
+      <!--<th class="redux">Ora</th>-->
+      <!--<th class="major">Squadra 1</th>-->
+      <!--<th class="major">Squadra 2</th>-->
+      <!--<th class="redux">Q. 1</th>-->
+      <!--<th class="redux">Q. X</th>-->
+      <!--<th class="redux">Q. 2</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<td><input type="date" ngModel #data_9="ngModel" name="data_9" required></td>-->
+      <!--<td class="redux"><input type="time" ngModel #time_9="ngModel" name="time_9" required></td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra1_9" ngModel #squadra1_9="ngModel"-->
+                <!--required name="squadra1_9">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra2_1" ngModel #squadra2_9="ngModel"-->
+                <!--required name="squadra2_1">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="redux"><input type="text" ngModel #q1_9="ngModel" name="q1_9"> </td>-->
+      <!--<td class="redux"><input type="text" ngModel #qx_9="ngModel" name="qx_9"></td>-->
+      <!--<td class="redux"><input type="text" ngModel #q2_9="ngModel" name="q2_9"></td>-->
+    <!--</tr>-->
+    <!--&lt;!&ndash; FINE PARTITA &ndash;&gt;-->
+    <!--&lt;!&ndash; PARTITA &ndash;&gt;-->
+    <!--<tr>-->
+      <!--<th>Data</th>-->
+      <!--<th class="redux">Ora</th>-->
+      <!--<th class="major">Squadra 1</th>-->
+      <!--<th class="major">Squadra 2</th>-->
+      <!--<th class="redux">Q. 1</th>-->
+      <!--<th class="redux">Q. X</th>-->
+      <!--<th class="redux">Q. 2</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<td><input type="date" ngModel #data_10="ngModel" name="data_10" required></td>-->
+      <!--<td class="redux"><input type="time" ngModel #time_10="ngModel" name="time_10" required></td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra1_10" ngModel #squadra1_10="ngModel"-->
+                <!--required name="squadra1_10">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="major">-->
+        <!--<select id="squadra2_10" ngModel #squadra2_10="ngModel"-->
+                <!--required name="squadra2_10">-->
+          <!--<option *ngFor="let sq of squadre" [value]="sq.squadra">{{sq.squadra}}</option>-->
+        <!--</select>-->
+      <!--</td>-->
+      <!--<td class="redux"><input type="text" ngModel #q1_10="ngModel" name="q1_10"> </td>-->
+      <!--<td class="redux"><input type="text" ngModel #qx_10="ngModel" name="qx_10"></td>-->
+      <!--<td class="redux"><input type="text" ngModel #q2_10="ngModel" name="q2_10"></td>-->
+    <!--</tr>-->
+    <!--&lt;!&ndash; FINE PARTITA &ndash;&gt;-->
+
+  </table>
+
+
+  <input type = "submit" value = "Invia giornata" class="button" >
+  <br><br><br>
+</form>
