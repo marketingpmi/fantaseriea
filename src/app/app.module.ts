@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import {AngularFirestore, AngularFirestoreModule} from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 
 
@@ -24,6 +25,19 @@ import {LoginComponent} from "./login/login.component";
 import {DashboardComponent} from './dashboard/dashboard.component';
 
 import {AngularMaterialModule} from './angular-material/angular-material.module';
+import {MapToIterable} from './table/map-to-iterable.pipe';
+import { InsertDayComponent } from './admin/insert-giornata/insert-day.component';
+
+
+import {DateValueAccessorModule} from 'angular-date-value-accessor';
+import { GiornataFormComponent } from './giornata-form/giornata-form.component';
+import { SingleDayComponent } from './giornata-singola/single-day.component';
+import { ClassificationComponent } from './classification/classification.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { UsersComponent } from './users/users.component';
+import { ConvertPhotoUrlPipe } from './pipe/convert-photo-url.pipe';
+import { GetPhotoUrlFromNamePipe } from './pipe/get-photo-url-from-name.pipe';
 
 
 @NgModule({
@@ -36,7 +50,10 @@ import {AngularMaterialModule} from './angular-material/angular-material.module'
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireDatabaseModule,
       AngularFireAuthModule,
-      AngularMaterialModule
+      AngularMaterialModule,
+      AngularFirestoreModule,
+      DateValueAccessorModule,
+      HttpClientModule
   ],
   declarations: [
     AppComponent,
@@ -47,7 +64,15 @@ import {AngularMaterialModule} from './angular-material/angular-material.module'
     TableComponent,
     WgPartiteGiornataComponent,
     WgClassificaComponent,
-    DashboardComponent
+    DashboardComponent,
+    MapToIterable,
+    InsertDayComponent,
+    GiornataFormComponent,
+    SingleDayComponent,
+    ClassificationComponent,
+    UsersComponent,
+    ConvertPhotoUrlPipe,
+    GetPhotoUrlFromNamePipe
   ],
   providers: [],
   bootstrap: [AppComponent]

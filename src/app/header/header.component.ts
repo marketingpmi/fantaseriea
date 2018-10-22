@@ -3,6 +3,7 @@ import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {AuthGuard} from '../services/auth-guard.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,15 +12,18 @@ import {AuthGuard} from '../services/auth-guard.service';
 })
 export class HeaderComponent implements OnInit {
   public isLogged: boolean;
+    private isAdminLogged: boolean;
 
       constructor(public afAuth: AngularFireAuth, private router: Router, private authService: AuthService, private guard: AuthGuard) {
-
       }
 
   ngOnInit() {
       this.authService.getLogged().subscribe((auth) => {
           console.log(' this.authService.getLogged -> ' + auth);
           this.isLogged = auth;
+      });
+      this.authService.getAdminLogged().subscribe((auth) => {
+          this.isAdminLogged = auth;
       });
   }
 

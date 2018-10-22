@@ -7,6 +7,11 @@ body {
     font-size: 14px;
 }
 
+h1 {
+    text-align: center;
+    font-size: 35px;
+}
+
 .mobileDisplay {
     display: none;
 }
@@ -19,6 +24,7 @@ body {
     float: right;
 }
 
+
 .noborder {
     border: 0;
 }
@@ -27,12 +33,112 @@ body {
     display: none;
 }
 
+.ctn_footer[_ngcontent-c2] {
+    position: fixed !important;
+    bottom: 0 !important;
+}
+
+.nodata {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px auto;
+}
+
+.container-table {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.settanta {
+    width: 70%;
+}
+.cinquanta {
+    width: 50%;
+}
+
+.centerElement {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.container-title-buttons {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+}
+
+img.avatar {
+    height: 50px;
+    max-height: 50px;
+}
+
 /** COLOR **/
 .green {
     background-color: green;
 }
 .green:hover {
     background-color: green;
+}
+
+
+/*** FORM *****/
+.form {
+    margin: 0 auto;
+}
+.container-form {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 30px;
+    text-align: center;
+}
+.form input, .form select, .form label {
+    min-width: 400px;
+    height: 30px;
+    margin: 10px auto;
+    text-align: center;
+    display: block;
+}
+.form td input, .form td select, .form td label {
+    min-width: 150px;
+    width: auto;
+}
+form label {
+    font-weight: bold;
+}
+.form input[type="submit" i] {
+    min-width: 400px;
+    min-height: 35px;
+    font-size: 18px;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    border-radius: 5px;
+    border: 1px solid darkslategrey;
+    background-color: darkslategrey;
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+form label.standard {
+    margin: 0 20px;
+    text-align: right;
+}
+
+.container-form form input, .container-form form select {
+    margin: 10px 0px;
+    min-width: 200px;
+    text-align: left;
+}
+
+.container-form.mini {
+    text-align: left;
+    margin: 0 auto;
+    width: auto;
+    max-width: 357px;
 }
 
 /***** MEDIA QUERY **********/

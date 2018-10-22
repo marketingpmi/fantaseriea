@@ -6,6 +6,7 @@ import {User} from '../models/user';
 import {Router} from '@angular/router';
 
 import { HeaderComponent} from '../header/header.component';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
     selector: 'app-login',
@@ -17,11 +18,14 @@ export class LoginComponent implements OnInit{
     password: string;
     userLogin: Observable<any>;
     user: User;
+    dato: Observable<any>;
 
-    constructor(private AuthService : AuthService, private router: Router ) {}
+    constructor(private AuthService : AuthService, private router: Router,
+                private http: HttpClient ) {}
 
     login() {
         this.AuthService.login (this.email, this.password).then(value => {
+            JSON.stringify(value);
             this.router.navigate(['dashboard']);
         });
     }

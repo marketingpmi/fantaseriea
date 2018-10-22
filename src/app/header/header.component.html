@@ -17,8 +17,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/giornata">Giornata</a>
                     </li>
+                    <li class="nav-item" *ngIf="isAdminLogged">
+                        <a class="nav-link" href="/insertgiornata">Inserisci Giornata</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/profile">Profilo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Utenti</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" (click)="logout()" *ngIf="isLogged" style="cursor:pointer">Logout</a>

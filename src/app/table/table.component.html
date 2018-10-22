@@ -1,5 +1,5 @@
 <div class="customTable table-responsive">
-  <table class="table">
+  <table class="table" *ngIf="tipo!='giornata'">
     <thead>
     <tr>
       <th *ngFor="let el of model">
@@ -7,21 +7,15 @@
       </th>
     </tr>
     </thead>
+
     <tbody>
     <tr *ngFor="let element of data | async">
-      <td> {{ element.fase }}</td>
-      <td>{{element.stagione}}</td>
-      <td>{{element.data}}</td>
-      <td>{{element.squadra1}}</td>
-      <td>VS.</td>
-      <td>{{element.squadra2}}</td>
-      <td>{{element.q1}}</td>
-      <td>{{element.qx}}</td>
-      <td>{{element.q2}}</td>
-      <td>{{element.g1}}</td>
-      <td>VS.</td>
-      <td>{{element.g2}}</td>
+      <td *ngFor="let column of element | mapToIterable">
+        <div>{{column.val}}</div>
+      </td>
     </tr>
     </tbody>
+
   </table>
+
 </div>

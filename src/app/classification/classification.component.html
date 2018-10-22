@@ -1,3 +1,42 @@
-<p>
-  classification works!
-</p>
+<h1>Classifica</h1>
+
+<div class="container-table settanta">
+<table class="table" *ngIf="classifica">
+  <thead>
+  <tr>
+    <th>Giocatore</th>
+    <th>Punti</th>
+    <th></th>
+    <th *ngIf="(edit === false)">edit</th>
+    <th *ngIf="(edit === true)">save</th>
+    <th *ngIf="(edit === true)">undo</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let element of classifica | async">
+    <!-- VIEW -->
+    <td *ngIf="view"><img class="avatar" [src]="element.giocatore | getPhotoUrlFromName | async"></td>
+    <td *ngIf="view">{{element.giocatore}}</td>
+    <td *ngIf="view">{{element.punti}}</td>
+    <!-- EDIT -->
+    <td *ngIf="edit"><input type="text" [(ngModel)]="element.giocatore" name="giocatore"> </td>
+    <td *ngIf="edit"><input type="text" [(ngModel)]="element.punti" name="punti"></td>
+    <!-- ACTIONS VIEW -->
+    <td *ngIf="(edit === false)" style="width:10px"></td>
+    <td *ngIf="(edit === false)" (click)="editItem(element)" style="width:10px"><button class="fas fa-pencil-alt"></button></td>
+    <!-- ACTIONS EDIT -->
+    <td *ngIf="(edit === true)" style="width:10px"></td>
+    <td *ngIf="(edit === true)" (click)="saveItem(element)" style="width:10px"><button class="fas fa-save"></button></td>
+    <td *ngIf="(edit === true)" (click)="viewMode(element)" style="width:10px"><button class="fas fa-undo"></button></td>
+
+  </tr>
+  </tbody>
+
+</table>
+
+<div class="nodata" *ngIf="!data">
+  NO DATA
+</div>
+
+</div>

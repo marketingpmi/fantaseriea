@@ -1,12 +1,12 @@
 export const environment = {
   production: true,
     firebase: {
-        apiKey: "AIzaSyCjk9hgfRb3s3-O-vvKkRS4OpvywxmGGHA",
-        authDomain: "visitfiumicino-292c6.firebaseapp.com",
-        databaseURL: "https://visitfiumicino-292c6.firebaseio.com",
-        projectId: "visitfiumicino-292c6",
-        storageBucket: "visitfiumicino-292c6.appspot.com",
-        messagingSenderId: "171353844478"
+        apiKey: "AIzaSyCR96-zYiX6kpmnuTYk-BWzX_E4IRvWunU",
+        authDomain: "fantaseriea-4f79f.firebaseapp.com",
+        databaseURL: "https://fantaseriea-4f79f.firebaseio.com",
+        projectId: "fantaseriea-4f79f",
+        storageBucket: "fantaseriea-4f79f.appspot.com",
+        messagingSenderId: "767982813421"
     }
 };
 

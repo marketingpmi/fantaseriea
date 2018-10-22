@@ -1,0 +1,14 @@
+<h1>GIORNATA {{_giornata}}</h1>
+
+<div class="select-giornata">
+  Seleziona la giornata
+  <select id="day" [(ngModel)]="day" (change)="setDay(day)"
+          required name="day">
+    <option *ngFor="let g of matches" [value]="g">{{g}}</option>
+  </select>
+</div>
+
+
+<div class="container-giornata">
+  <app-giornata-singola [giornata]="_giornata" [model]="_model" [config]="_config" [data]="_data"></app-giornata-singola>
+</div>

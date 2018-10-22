@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { GiornateService } from './giornate.service';
+import { DaysService } from './days.service';
 
-describe('GiornateService', () => {
+describe('DaysService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [GiornateService]
+      providers: [DaysService]
     });
   });
 
-  it('should be created', inject([GiornateService], (service: GiornateService) => {
+  it('should be created', inject([DaysService], (service: DaysService) => {
     expect(service).toBeTruthy();
   }));
 });

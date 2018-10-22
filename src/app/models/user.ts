@@ -2,6 +2,11 @@ import {AuthService} from '../services/auth.service';
 import {Observable} from 'rxjs';
 import * as firebase from 'firebase';
 
+export interface Roles {
+    admin?: boolean,
+    user?: boolean;
+}
+
 export class User {
     name: string;
     email: string;
@@ -9,13 +14,10 @@ export class User {
     photoURL: string;
     uid: any;
     token: any;
+    role: any;
 
-    constructor(private user: firebase.User) {
-        this.name = user.displayName;
-        this.email= user.email;
-        this.phoneNumber = user.phoneNumber;
-        this.photoURL = user.photoURL;
-        this.uid = user.uid;
+    constructor(private user: any | void) {
+        if (user.role === '') { this.user.role = 'user'; }
     }
 
     public getName(): string { return this.name; }
@@ -29,5 +31,7 @@ export class User {
     public getUid(): string { return this.uid; }
 
     public getToken(): string { return this.token; }
+
+    public getRole(): any { return this.role; };
 
 }
